@@ -10,14 +10,14 @@ def search(arr, x)
   end
   -1
 end
-
+# Driver Code
 arr = [2, 3, 4, 10, 40]
 x = 10
 
+# Function call
 result = search(arr, x)
-
 if result == -1
-  puts 'O elemento não está na array'
+  puts 'Element is not present in array'
 else
-  puts "O elemento está no indice: #{result}"
+  puts "Element is present at index #{result}"
 end
