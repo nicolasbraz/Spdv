@@ -1,58 +1,46 @@
-# Ruby Program for counting sort
- 
-RANGE = 255;
- 
-# The main function that sort
-# the given string arr[] in
-# alphabetical order
-def countSort(arr)
-{ 
-    # The output character array
-    # that will have sorted arr
-    output = Array.new(arr.length())
-    len = strlen(arr)
-     
-    # Create a count array to
-    # store count of individual
-    # characters and initialize
-    # count array as 0
-    count = array_fill(0, RANGE + 1, 0)
- 
-    # Store count of
-    # each character
-    for(i = 0; i < len; ++i)
-        ++count[ord(arr[i])]
- 
-    # Change count[i] so that
-    # count[i] now contains
-    # actual position of this
-    # character in output array
-    for (i = 1; i <= RANGE; ++i)
-        $count[i] += $count[i - 1]
- 
-    # Build the output
-    # character array
-    # To make it stable we are operating
-    # in reverse order.
-    for (i = len-1; i >= 0 ; i--)
-    {
-      output[count[ord(arr[i])] - 1] = arr[i]
-      count[ord(arr[i])];
-    }
- 
-    # Copy the output array to
-    # arr, so that arr now
-    # contains sorted characters
-    for ($i = 0; $i < $len; ++$i)
-        $arr[$i] = $output[$i];
-return arr
- 
-# Driver Code
-$arr = "geeksforgeeks" 
+# frozen_string_literal: true
 
-$arr = countSort($arr)
- 
-echo "Sorted character array is #{arr}"
- 
-# This code is contributed by mits
-?>
+# Ruby Program for counting sort
+
+def count_sort(arr)
+
+  # The output character array that will have sorted arr
+  output = Array.new(arr.length())
+
+  # Create a count array to store count of inidividual
+  # characters and initialize count array as 0
+  count = Array.new(256, 0)
+
+  # For storing the resulting answer since the string is immutable  
+  ans = Array.new()
+
+  # Store count of each character
+  for i in 0..(arr.length() - 1)
+    count[arr[i].ord] += 1
+  end
+
+  # Change count[i] so that count[i] now contains actual
+  # position of this character in output array 
+  for i in 0..255
+    count[i] += count[i -1]
+  end
+
+  # Build the output character array
+  for i in 0..arr.length() -1
+    output[count[arr[i].ord] - 1] = arr[i]
+    count[arr[i].ord] -= 1
+  end
+
+  # Copy the output array to arr, so tha arr now
+  # contais sorted characters
+  for i in 0..(arr.length() - 1)
+    ans[i] = output[i]
+  end
+
+  return ans
+end
+
+# Driver program to test above function
+arr = 'geeksforgeeks'
+ans = count_sort(arr)
+puts "Sorted character array is #{ans.join('')} "
