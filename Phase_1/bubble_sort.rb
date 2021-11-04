@@ -1,31 +1,27 @@
-#Ruby program for implementation
-#of Bubble Sort
- 
-def bubbleSort(arr)
-  n = sizeof(arr) 
-  #Traverse through all array elements
-  for(i = 0; i < n; i++)
-    # Last i elements are already in place
-    for (j = 0; j < n - i - 1; j++)
-      # traverse the array from 0 to n-i-1
-      # Swap if the element found is greater
-      # than the next element
-      if (arr[j] > arr[j+1])
-        t = arr[j]
-        arr[j] = arr[j+1]
-        arr[j+1] = t
-      end
+# frozen_string_literal: true
+
+# Ruby program for implementation of Bubble Sort
+
+def bubble_Sort(arr)
+  n = arr.count
+  # Traverse through all array elements
+
+  range = 0..(n - 1)
+
+  range.each do |i|
+    (0..((n - 1) - i - 1)).each do |j|
+      arr[j], arr[j + 1] = arr[j + 1], arr[j] if arr[j] > arr[j + 1]
     end
   end
 end
- 
-#Driver code to test above
-arr = Array.new(64, 34, 25, 12, 22, 11, 90);
- 
-len = sizeof(arr);
-bubbleSort(arr);
- 
-puts "Sorted array : \n";
- 
-for (i = 0; i < len; i++)
-  echo arr[i]." " 
+
+# Driver code to test above
+arr = [64, 34, 25, 12, 22, 11, 90]
+
+bubble_Sort(arr)
+
+p 'Sorted array is: '
+
+(0..arr.count - 1).each do |i|
+  puts(arr[i])
+end
